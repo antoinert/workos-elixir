@@ -188,7 +188,12 @@ defmodule WorkOS.UserManagement.ClientMock do
         assert body[to_string(field)] == value
       end
 
-      success_body = @authentication_mock
+      success_body =
+        if impersonator = opts[:impersonator] do
+          @authentication_mock |> Map.put("impersonator", impersonator)
+        else
+          @authentication_mock
+        end
 
       {status, body} = Keyword.get(opts, :respond_with, {200, success_body})
       %Tesla.Env{status: status, body: body}

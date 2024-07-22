@@ -230,6 +230,23 @@ defmodule WorkOS.UserManagementTest do
 
       refute is_nil(user["id"])
     end
+
+    test "when authenticating with code, serializes impersonator", context do
+      body = [code: "foo-bar"]
+
+      opts = [
+        assert_fields: body,
+        impersonator: %{"email" => "test@example.com", "reason" => "Test Impersonation"}
+      ]
+
+      context |> ClientMock.authenticate(opts)
+
+      assert {:ok, %WorkOS.UserManagement.Authentication{user: user, impersonator: impersonator}} =
+               WorkOS.UserManagement.authenticate_with_code(body |> Enum.into(%{}))
+
+      refute is_nil(impersonator["email"])
+      refute is_nil(user["id"])
+    end
   end
 
   describe "authenticate_with_magic_auth" do

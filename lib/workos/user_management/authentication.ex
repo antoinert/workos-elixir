@@ -9,7 +9,13 @@ defmodule WorkOS.UserManagement.Authentication do
 
   @type t() :: %__MODULE__{
           user: User.t(),
-          organization_id: String.t() | nil
+          organization_id: String.t() | nil,
+          impersonator:
+            %{
+              email: String.t(),
+              reason: String.t() | nil
+            }
+            | nil
         }
 
   @enforce_keys [
@@ -17,14 +23,16 @@ defmodule WorkOS.UserManagement.Authentication do
   ]
   defstruct [
     :user,
-    :organization_id
+    :organization_id,
+    :impersonator
   ]
 
   @impl true
   def cast(map) do
     %__MODULE__{
       user: map["user"],
-      organization_id: map["organization_id"]
+      organization_id: map["organization_id"],
+      impersonator: map["impersonator"]
     }
   end
 end
