@@ -594,6 +594,7 @@ defmodule WorkOS.UserManagement do
     * `:after` - Pagination cursor to receive records after a provided event ID.
     * `:before` - An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
     * `:order` - Order the results by the creation time. Supported values are "asc" and "desc" for showing older and newer records first respectively.
+    * `:statuses` - Status of the organization membership.
 
   """
   @spec list_organization_memberships(WorkOS.Client.t(), map()) ::
@@ -609,7 +610,8 @@ defmodule WorkOS.UserManagement do
         limit: opts[:limit],
         after: opts[:after],
         before: opts[:before],
-        order: opts[:order]
+        order: opts[:order],
+        statuses: opts[:statuses]
       ]
     )
   end

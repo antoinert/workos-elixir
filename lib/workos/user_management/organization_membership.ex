@@ -10,7 +10,10 @@ defmodule WorkOS.UserManagement.OrganizationMembership do
           user_id: String.t(),
           organization_id: String.t(),
           updated_at: String.t(),
-          created_at: String.t()
+          created_at: String.t(),
+          role: %{
+            slug: String.t(),
+          }
         }
 
   @enforce_keys [
@@ -18,14 +21,16 @@ defmodule WorkOS.UserManagement.OrganizationMembership do
     :user_id,
     :organization_id,
     :updated_at,
-    :created_at
+    :created_at,
+    :role
   ]
   defstruct [
     :id,
     :user_id,
     :organization_id,
     :updated_at,
-    :created_at
+    :created_at,
+    :role
   ]
 
   @impl true
@@ -35,7 +40,8 @@ defmodule WorkOS.UserManagement.OrganizationMembership do
       user_id: map["user_id"],
       organization_id: map["organization_id"],
       updated_at: map["updated_at"],
-      created_at: map["created_at"]
+      created_at: map["created_at"],
+      role: map["role"]
     }
   end
 end
