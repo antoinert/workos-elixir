@@ -753,7 +753,8 @@ defmodule WorkOS.UserManagement do
         email: opts[:email],
         organization_id: opts[:organization_id],
         expires_in_days: opts[:expires_in_days],
-        inviter_user_id: opts[:inviter_user_id]
+        inviter_user_id: opts[:inviter_user_id],
+        role_slug: opts[:role_slug]
       }
     )
   end
