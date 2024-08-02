@@ -119,6 +119,7 @@ defmodule WorkOS.SSO do
       |> Map.take(
         [
           :client_id,
+          :response_type,
           :redirect_uri,
           :connection,
           :organization,
