@@ -125,12 +125,13 @@ defmodule WorkOS.SSO do
           :provider,
           :state,
           :login_hint,
-          :domain_hint
+          :domain_hint,
+          :screen_hint
         ] ++ Map.keys(defaults)
       )
       |> URI.encode_query()
 
-    {:ok, "#{WorkOS.base_url()}/sso/authorize?#{query}"}
+    {:ok, "#{WorkOS.base_url()}/user_management/authorize?#{query}"}
   end
 
   def get_authorization_url(_params),
